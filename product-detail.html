@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - LUXE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .product-detail-section {
+            padding: 48px 0;
+        }
+
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-images {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 16px;
+        }
+
+        .thumbnail-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .thumbnail {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--primary-color);
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        .product-detail-info {
+            padding-top: 24px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+
+        .product-detail-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .product-detail-category {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .product-detail-price {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .product-detail-description {
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .size-selector {
+            margin-bottom: 32px;
+        }
+
+        .selector-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .size-option {
+            padding: 12px 24px;
+            border: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .size-option:hover,
+        .size-option.selected {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+
+        .size-option.unavailable {
+            opacity: 0.3;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .size-option.unavailable::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--text-color);
+            transform: rotate(-45deg);
+        }
+
+        .color-selector {
+            margin-bottom: 32px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 12px;
+        }
+
+        .color-option {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .color-option:hover,
+        .color-option.selected {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--secondary-color), 0 0 0 4px var(--primary-color);
+        }
+
+        .quantity-selector {
+            margin-bottom: 32px;
+        }
+
+        .quantity-controls-detail {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .quantity-btn-detail {
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .quantity-btn-detail:hover {
+            background: var(--hover-bg);
+        }
+
+        .quantity-display-detail {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .add-to-cart-detail {
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .add-to-cart-detail:hover {
+            background: #333;
+        }
+
+        .add-to-wishlist {
+            width: 100%;
+            padding: 18px 32px;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .add-to-wishlist:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .product-features {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 968px) {
+            .product-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .product-images {
+                grid-template-columns: 80px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-detail-title {
+                font-size: 24px;
+            }
+
+            .product-detail-price {
+                font-size: 22px;
+            }
+
+            .product-images {
+                grid-template-columns: 1fr;
+            }
+
+            .thumbnail-list {
+                flex-direction: row;
+                order: 2;
+            }
+
+            .thumbnail {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <div class="logo">
+                    <a href="index.html">LUXE</a>
+                </div>
+
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">Woman</a>
+                    <a href="index.html" class="nav-link">Man</a>
+                    <a href="index.html" class="nav-link">Kids</a>
+                    <a href="index.html" class="nav-link">New Collection</a>
+                    <a href="index.html" class="nav-link">Sale</a>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="action-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="action-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                    <button class="action-btn cart-btn" aria-label="Shopping Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 2L11 8"></path>
+                            <path d="M15 2L13 8"></path>
+                            <path d="M1 8h22"></path>
+                            <path d="M4 8l2 13h12l2-13"></path>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Detail -->
+    <section class="product-detail-section">
+        <div class="container">
+            <div class="product-detail-grid">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="thumbnail-list">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" alt="Thumbnail 1" class="thumbnail active" onclick="changeMainImage(this)">
+                        <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=800&q=80" alt="Thumbnail 2" class="thumbnail" onclick="changeMainImage(this)">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80" alt="Thumbnail 3" class="thumbnail" onclick="changeMainImage(this)">
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80" alt="Structured Blazer" class="main-image" id="mainImage">
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-detail-info">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="index.html">Woman</a> / Structured Blazer
+                    </div>
+
+                    <h1 class="product-detail-title">Structured Blazer</h1>
+                    <div class="product-detail-category">Woman · Blazers</div>
+                    <div class="product-detail-price">$89.90</div>
+
+                    <div class="product-detail-description">
+                        <p>Structured blazer with notched lapels and long sleeves. Front flap pockets and single back vent. Front button fastening.</p>
+                    </div>
+
+                    <!-- Size Selector -->
+                    <div class="size-selector">
+                        <label class="selector-label">Select Size</label>
+                        <div class="size-options">
+                            <button class="size-option unavailable">XS</button>
+                            <button class="size-option selected">S</button>
+                            <button class="size-option">M</button>
+                            <button class="size-option">L</button>
+                            <button class="size-option">XL</button>
+                        </div>
+                    </div>
+
+                    <!-- Color Selector -->
+                    <div class="color-selector">
+                        <label class="selector-label">Select Color</label>
+                        <div class="color-options">
+                            <button class="color-option selected" style="background: #000000;" title="Black"></button>
+                            <button class="color-option" style="background: #8B7355;" title="Beige"></button>
+                            <button class="color-option" style="background: #2C3E50;" title="Navy"></button>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector">
+                        <label class="selector-label">Quantity</label>
+                        <div class="quantity-controls-detail">
+                            <button class="quantity-btn-detail" onclick="decreaseQuantity()">-</button>
+                            <span class="quantity-display-detail" id="quantityDisplay">1</span>
+                            <button class="quantity-btn-detail" onclick="increaseQuantity()">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <button class="add-to-cart-detail">Add to Cart</button>
+                    <button class="add-to-wishlist">Add to Wishlist</button>
+
+                    <!-- Product Features -->
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                            <div class="feature-text">
+                                <div class="feature-title">Free Shipping</div>
+                                <div class="feature-description">On orders over $100</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <div class="feature-text">
+                                <div class="feature-title">Easy Returns</div>
+                                <div class="feature-description">30 day return policy</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <div class="feature-text">
+                                <div class="feature-title">Secure Payment</div>
+                                <div class="feature-description">100% secure transactions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-title">Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Woman</a></li>
+                        <li><a href="#">Man</a></li>
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">New Collection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Help</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-title">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LUXE. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let quantity = 1;
+
+        function changeMainImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnail.src;
+            
+            // Update active state
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        function increaseQuantity() {
+            quantity++;
+            document.getElementById('quantityDisplay').textContent = quantity;
+        }
+
+        function decreaseQuantity() {
+            if (quantity > 1) {
+                quantity--;
+                document.getElementById('quantityDisplay').textContent = quantity;
+            }
+        }
+
+        // Size selection
+        document.querySelectorAll('.size-option').forEach(btn => {
+            if (!btn.classList.contains('unavailable')) {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            }
+        });
+
+        // Color selection
+        document.querySelectorAll('.color-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-option').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+            });
+        });
+
+        // Add to cart
+        document.querySelector('.add-to-cart-detail').addEventListener('click', () => {
+            alert('Added to cart! (In a real site, this would add to your shopping cart)');
+        });
+
+        // Add to wishlist
+        document.querySelector('.add-to-wishlist').addEventListener('click', () => {
+            alert('Added to wishlist! (In a real site, this would save to your wishlist)');
+        });
+    </script>
+</body>
+</html>
