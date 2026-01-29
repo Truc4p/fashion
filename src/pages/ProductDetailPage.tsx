@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Header, Footer, Cart, ProductCard, ProductGallery, SizeGuide, SEO, ProductReviews } from '@/components'
+import { Header, Footer, Cart, ProductCard, ProductGallery, SizeGuide, SEO, ProductReviews, ScrollToTop, ProductComparison, RecommendedProducts } from '@/components'
 import { products } from '@/data/products'
 import { useCart } from '@/context/CartContext'
 import { useWishlist } from '@/context/WishlistContext'
+import { useRecentlyViewed } from '@/context/RecentlyViewedContext'
+import { useComparison } from '@/context/ComparisonContext'
 import { formatPrice, cn } from '@/lib/utils'
-import { ChevronLeft, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus } from 'lucide-react'
+import { getRecommendedProducts } from '@/lib/recommendations'
+import { ChevronLeft, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, Scale } from 'lucide-react'
 
 export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>()
   const product = products.find((p) => p.id === Number(id))
   const { addItem } = useCart()
   const { isInWishlist, toggleWishlist } = useWishlist()
+  const { addToRecentlyViewed } = useRecentlyViewed()
+  const { addToComparison, isInComparison } = useComparison()
 
   const [selectedSize, setSelectedSize] = useState<string>('')
   const [selectedColor, setSelectedColor] = useState<string>('')
@@ -20,6 +25,14 @@ export function ProductDetailPage() {
   const [showSizeGuide, setShowSizeGuide] = useState(false)
 
   const inWishlist = product ? isInWishlist(product.id) : false
+  const inComparison = product ? isInComparison(product.id) : false
+
+  // Add to recently viewed when product loads
+  useEffect(() => {
+    if (product) {
+      addToRecentlyViewed(product)
+    }
+  }, [product, addToRecentlyViewed])
 
   // Reset selections when product changes
   useEffect(() => {
@@ -35,6 +48,8 @@ export function ProductDetailPage() {
       <>
         <Header />
         <Cart />
+        <ScrollToTop />
+        <ProductComparison />
         <main className="pt-20 min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-display font-semibold mb-4">Product Not Found</h1>
@@ -49,13 +64,24 @@ export function ProductDetailPage() {
   }
 
   const productImages = product.images || [product.image]
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 4)
+  const recommendedProducts = getRecommendedProducts(product, products, 4)
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addItem(product, selectedSize, selectedColor)
+    }
+  }
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: product.description,
+        url: window.location.href,
+      })
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      alert('Link copied to clipboard!')
     }
   }
 
@@ -258,8 +284,25 @@ export function ProductDetailPage() {
                     <Heart className={cn("w-5 h-5", inWishlist && "fill-current")} />
                   </motion.button>
 
+                  {/* Compare */}
+                  <motion.button
+                    onClick={() => addToComparison(product)}
+                    whileTap={{ scale: 0.9 }}
+                    className={cn(
+                      "p-4 border transition-colors",
+                      inComparison
+                        ? "border-accent-gold bg-accent-gold text-white"
+                        : "border-gray-200 hover:border-primary hover:text-accent-gold"
+                    )}
+                    aria-label={inComparison ? "In comparison" : "Add to comparison"}
+                    disabled={inComparison}
+                  >
+                    <Scale className="w-5 h-5" />
+                  </motion.button>
+
                   {/* Share */}
                   <button
+                    onClick={handleShare}
                     className="p-4 border border-gray-200 hover:border-primary transition-colors"
                     aria-label="Share product"
                   >
@@ -290,23 +333,14 @@ export function ProductDetailPage() {
         {/* Reviews Section */}
         <ProductReviews productId={product.id} productName={product.name} />
 
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <section className="section-spacing bg-luxe-cream">
-            <div className="container-luxe">
-              <h2 className="text-2xl md:text-3xl font-display font-semibold mb-8 text-center">
-                You May Also Like
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                {relatedProducts.map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
-              </div>
-            </div>
-          </section>
+        {/* Recommended Products */}
+        {recommendedProducts.length > 0 && (
+          <RecommendedProducts products={recommendedProducts} title="You May Also Like" />
         )}
       </main>
       <Footer />
+      <ScrollToTop />
+      <ProductComparison />
 
       {/* Size Guide Modal */}
       <SizeGuide 

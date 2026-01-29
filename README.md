@@ -1,6 +1,6 @@
 # LUXE Fashion Website
 
-A professional, modern fashion e-commerce website inspired by Zara's design principles.
+A professional, modern fashion e-commerce website.
 
 ## Features
 

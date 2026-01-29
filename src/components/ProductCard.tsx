@@ -3,8 +3,10 @@ import { motion } from 'framer-motion'
 import { Product } from '@/types'
 import { useCart } from '@/context/CartContext'
 import { useWishlist } from '@/context/WishlistContext'
-import { formatPrice, cn } from '@/lib/utils'
-import { ShoppingBag, Heart } from 'lucide-react'
+import { useComparison } from '@/context/ComparisonContext'
+import { useCurrency } from '@/context/CurrencyContext'
+import { cn } from '@/lib/utils'
+import { ShoppingBag, Heart, Scale } from 'lucide-react'
 
 interface ProductCardProps {
   product: Product
@@ -14,7 +16,10 @@ interface ProductCardProps {
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart()
   const { isInWishlist, toggleWishlist } = useWishlist()
+  const { addToComparison, isInComparison } = useComparison()
+  const { formatPrice } = useCurrency()
   const inWishlist = isInWishlist(product.id)
+  const inComparison = isInComparison(product.id)
 
   return (
     <motion.article
@@ -87,19 +92,37 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             >
               <Heart className={cn("w-4 h-4", inWishlist && "fill-current")} />
             </motion.button>
+            <motion.button
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                addToComparison(product)
+              }}
+              whileTap={{ scale: 0.9 }}
+              className={cn(
+                "p-3 backdrop-blur-md transition-colors shadow-lg",
+                inComparison
+                  ? "bg-accent-gold text-white"
+                  : "bg-white/95 text-primary hover:bg-primary hover:text-white"
+              )}
+              aria-label={inComparison ? "In comparison" : "Add to comparison"}
+              disabled={inComparison}
+            >
+              <Scale className="w-4 h-4" />
+            </motion.button>
           </div>
         </motion.div>
 
         {/* Product Info */}
         <div className="space-y-2">
-          <span className="text-xs font-bold uppercase tracking-ultra text-luxe-gray">
+          <span className="text-xs font-bold uppercase tracking-ultra text-luxe-gray dark:text-gray-400">
             {product.category}
           </span>
-          <h3 className="text-base font-semibold text-primary group-hover:text-accent-gold transition-colors line-clamp-2 leading-snug">
+          <h3 className="text-base font-semibold text-primary dark:text-white group-hover:text-accent-gold transition-colors line-clamp-2 leading-snug">
             {product.name}
           </h3>
           <div className="flex items-center gap-3 pt-1">
-            <span className="text-base font-bold">
+            <span className="text-base font-bold dark:text-white">
               {formatPrice(product.price)}
             </span>
             {product.originalPrice && (

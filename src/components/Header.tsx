@@ -2,10 +2,13 @@ import { useState, useEffect, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '@/context/CartContext'
 import { useWishlist } from '@/context/WishlistContext'
+import { useComparison } from '@/context/ComparisonContext'
 import { cn } from '@/lib/utils'
 import { products } from '@/data/products'
 import { formatPrice } from '@/lib/utils'
-import { Search, User, ShoppingBag, Menu, X, Heart } from 'lucide-react'
+import { Search, User, ShoppingBag, Menu, X, Heart, Scale } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'
+import { CurrencySwitcher } from './CurrencySwitcher'
 
 const navLinks = [
   { href: '/category/woman', label: 'Woman' },
@@ -22,6 +25,7 @@ export function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const { toggleCart, totalItems } = useCart()
   const { totalWishlistItems } = useWishlist()
+  const { comparisonItems } = useComparison()
   const navigate = useNavigate()
 
   // Search results
@@ -100,6 +104,8 @@ export function Header() {
 
             {/* Actions */}
             <div className="flex items-center gap-4">
+              <CurrencySwitcher />
+              <ThemeToggle />
               <button
                 onClick={() => setIsSearchOpen(true)}
                 className="p-2 hover:opacity-70 transition-opacity"
@@ -119,6 +125,14 @@ export function Header() {
                   </span>
                 )}
               </Link>
+              {comparisonItems.length > 0 && (
+                <div className="relative p-2 hover:opacity-70 transition-opacity">
+                  <Scale className="w-5 h-5" />
+                  <span className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center text-2xs font-medium bg-accent-gold text-white rounded-full">
+                    {comparisonItems.length}
+                  </span>
+                </div>
+              )}
               <button
                 className="hidden sm:block p-2 hover:opacity-70 transition-opacity"
                 aria-label="Account"

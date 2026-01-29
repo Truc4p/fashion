@@ -8,9 +8,10 @@
   }
   
   body {
-    @apply font-sans text-primary antialiased;
+    @apply font-sans text-primary antialiased bg-white dark:bg-gray-900 dark:text-white;
     letter-spacing: 0.3px;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -20,6 +21,11 @@
 
   ::selection {
     @apply bg-accent-gold/30 text-primary;
+  }
+
+  /* Dark mode transitions */
+  .dark {
+    color-scheme: dark;
   }
 }
 
