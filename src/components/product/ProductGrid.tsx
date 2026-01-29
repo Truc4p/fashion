@@ -59,7 +59,7 @@ export function ProductGrid({ products }: ProductGridProps) {
   }, [products, activeCategory, sortBy])
 
   return (
-    <section id="products" className="section-spacing bg-white">
+    <section id="products" className="section-spacing bg-white dark:bg-gray-900">
       <div className="container-luxe">
         {/* Filters & Sort */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
@@ -73,7 +73,7 @@ export function ProductGrid({ products }: ProductGridProps) {
                   'px-4 py-2 text-xs font-medium uppercase tracking-widest transition-all duration-300',
                   activeCategory === category.value
                     ? 'bg-primary text-white'
-                    : 'text-primary hover:text-accent-gold'
+                    : 'text-primary dark:text-white hover:text-accent-gold dark:hover:text-accent-gold'
                 )}
               >
                 {category.label}
@@ -86,7 +86,7 @@ export function ProductGrid({ products }: ProductGridProps) {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="appearance-none px-4 py-2 pr-10 text-xs font-medium uppercase tracking-wider border border-gray-200 bg-white cursor-pointer focus:outline-none focus:border-primary transition-colors"
+              className="appearance-none px-4 py-2 pr-10 text-xs font-medium uppercase tracking-wider border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 dark:text-white cursor-pointer focus:outline-none focus:border-primary transition-colors"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>

@@ -19,16 +19,16 @@ export function Cart() {
       {/* Cart Sidebar */}
       <div
         className={cn(
-          'fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl transition-transform duration-500 ease-luxe flex flex-col',
+          'fixed top-0 right-0 bottom-0 w-full max-w-md bg-white dark:bg-gray-900 z-50 shadow-2xl dark:shadow-gray-900/50 transition-transform duration-500 ease-luxe flex flex-col',
           state.isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
+        <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
           <div className="flex items-center gap-3">
             <ShoppingBag className="w-5 h-5" />
-            <h2 className="text-lg font-display font-semibold">Shopping Cart</h2>
-            <span className="text-sm text-luxe-gray">({totalItems})</span>
+            <h2 className="text-lg font-display font-semibold dark:text-white">Shopping Cart</h2>
+            <span className="text-sm text-luxe-gray dark:text-gray-400">({totalItems})</span>
           </div>
           <button
             onClick={closeCart}
@@ -67,27 +67,27 @@ export function Cart() {
 
                   {/* Product Details */}
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium mb-1 truncate">{item.name}</h3>
+                    <h3 className="text-sm font-medium mb-1 truncate dark:text-white">{item.name}</h3>
                     {(item.selectedSize || item.selectedColor) && (
-                      <p className="text-xs text-luxe-gray mb-2">
+                      <p className="text-xs text-luxe-gray dark:text-gray-400 mb-2">
                         {item.selectedSize && `Size: ${item.selectedSize}`}
                         {item.selectedSize && item.selectedColor && ' / '}
                         {item.selectedColor && `Color: ${item.selectedColor}`}
                       </p>
                     )}
-                    <p className="text-sm font-semibold mb-3">{formatPrice(item.price)}</p>
+                    <p className="text-sm font-semibold mb-3 dark:text-white">{formatPrice(item.price)}</p>
 
                     {/* Quantity Controls */}
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center border border-gray-200">
+                      <div className="flex items-center border border-gray-200 dark:border-gray-600">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className="p-2 hover:bg-gray-50 transition-colors"
+                          className="p-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors dark:text-white"
                           aria-label="Decrease quantity"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-10 text-center text-sm">{item.quantity}</span>
+                        <span className="w-10 text-center text-sm dark:text-white">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           className="p-2 hover:bg-gray-50 transition-colors"
@@ -112,12 +112,12 @@ export function Cart() {
 
         {/* Footer */}
         {state.items.length > 0 && (
-          <div className="border-t border-gray-100 p-6 space-y-4">
+          <div className="border-t border-gray-100 dark:border-gray-700 p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-luxe-gray">Subtotal</span>
-              <span className="text-lg font-semibold">{formatPrice(totalPrice)}</span>
+              <span className="text-sm text-luxe-gray dark:text-gray-400">Subtotal</span>
+              <span className="text-lg font-semibold dark:text-white">{formatPrice(totalPrice)}</span>
             </div>
-            <p className="text-xs text-luxe-gray">
+            <p className="text-xs text-luxe-gray dark:text-gray-400">
               Shipping and taxes calculated at checkout.
             </p>
             <button className="btn-primary w-full">

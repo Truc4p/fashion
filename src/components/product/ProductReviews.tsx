@@ -120,19 +120,19 @@ export function ProductReviews(_props: ProductReviewsProps) {
   }
 
   return (
-    <section className="section-spacing border-t border-gray-100">
+    <section className="section-spacing border-t border-gray-100 dark:border-gray-700">
       <div className="container-luxe">
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Rating Summary */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-display font-semibold mb-6">Customer Reviews</h2>
+            <h2 className="text-2xl font-display font-semibold mb-6 dark:text-white">Customer Reviews</h2>
             
             {/* Average Rating */}
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-5xl font-display font-semibold">{averageRating.toFixed(1)}</span>
+              <span className="text-5xl font-display font-semibold dark:text-white">{averageRating.toFixed(1)}</span>
               <div>
                 <StarRating rating={Math.round(averageRating)} size="lg" />
-                <p className="text-sm text-luxe-gray mt-1">
+                <p className="text-sm text-luxe-gray dark:text-gray-400 mt-1">
                   Based on {totalReviews} reviews
                 </p>
               </div>
@@ -142,8 +142,8 @@ export function ProductReviews(_props: ProductReviewsProps) {
             <div className="space-y-2 mb-8">
               {ratingDistribution.map((item) => (
                 <div key={item.rating} className="flex items-center gap-3">
-                  <span className="text-sm text-luxe-gray w-12">{item.rating} star</span>
-                  <div className="flex-1 h-2 bg-gray-100 overflow-hidden">
+                  <span className="text-sm text-luxe-gray dark:text-gray-400 w-12">{item.rating} star</span>
+                  <div className="flex-1 h-2 bg-gray-100 dark:bg-gray-700 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${item.percentage}%` }}
@@ -151,7 +151,7 @@ export function ProductReviews(_props: ProductReviewsProps) {
                       className="h-full bg-accent-gold"
                     />
                   </div>
-                  <span className="text-sm text-luxe-gray w-8">{item.count}</span>
+                  <span className="text-sm text-luxe-gray dark:text-gray-400 w-8">{item.count}</span>
                 </div>
               ))}
             </div>
@@ -165,14 +165,14 @@ export function ProductReviews(_props: ProductReviewsProps) {
           {/* Reviews List */}
           <div className="lg:col-span-2">
             {/* Sort Options */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-              <span className="text-sm text-luxe-gray">{totalReviews} Reviews</span>
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+              <span className="text-sm text-luxe-gray dark:text-gray-400">{totalReviews} Reviews</span>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-luxe-gray">Sort by:</span>
+                <span className="text-sm text-luxe-gray dark:text-gray-400">Sort by:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                  className="text-sm font-medium bg-transparent border-none cursor-pointer focus:outline-none"
+                  className="text-sm font-medium bg-transparent border-none cursor-pointer focus:outline-none dark:text-white"
                 >
                   <option value="recent">Most Recent</option>
                   <option value="helpful">Most Helpful</option>
@@ -191,22 +191,22 @@ export function ProductReviews(_props: ProductReviewsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="pb-8 border-b border-gray-100 last:border-0"
+                    className="pb-8 border-b border-gray-100 dark:border-gray-700 last:border-0"
                   >
                     {/* Review Header */}
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-luxe-ivory flex items-center justify-center">
-                          <User className="w-5 h-5 text-luxe-gray" />
+                        <div className="w-10 h-10 rounded-full bg-luxe-ivory dark:bg-gray-700 flex items-center justify-center">
+                          <User className="w-5 h-5 text-luxe-gray dark:text-gray-400" />
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-medium">{review.author}</span>
+                            <span className="font-medium dark:text-white">{review.author}</span>
                             {review.verified && (
                               <span className="text-xs text-accent-gold font-medium">✓ Verified Purchase</span>
                             )}
                           </div>
-                          <div className="flex items-center gap-3 text-xs text-luxe-gray">
+                          <div className="flex items-center gap-3 text-xs text-luxe-gray dark:text-gray-400">
                             <span>{new Date(review.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                             {review.size && <span>Size: {review.size}</span>}
                           </div>
@@ -216,13 +216,13 @@ export function ProductReviews(_props: ProductReviewsProps) {
                     </div>
 
                     {/* Review Content */}
-                    <h4 className="font-semibold mb-2">{review.title}</h4>
-                    <p className="text-luxe-gray leading-relaxed mb-4">{review.content}</p>
+                    <h4 className="font-semibold mb-2 dark:text-white">{review.title}</h4>
+                    <p className="text-luxe-gray dark:text-gray-400 leading-relaxed mb-4">{review.content}</p>
 
                     {/* Fit Indicator */}
                     {review.fit && (
                       <div className="flex items-center gap-2 mb-4">
-                        <span className="text-xs text-luxe-gray">Fit:</span>
+                        <span className="text-xs text-luxe-gray dark:text-gray-400">Fit:</span>
                         <div className="flex gap-1">
                           {['small', 'true', 'large'].map((fit) => (
                             <span
@@ -231,7 +231,7 @@ export function ProductReviews(_props: ProductReviewsProps) {
                                 'px-2 py-1 text-xs rounded',
                                 review.fit === fit
                                   ? 'bg-primary text-white'
-                                  : 'bg-gray-100 text-luxe-gray'
+                                  : 'bg-gray-100 dark:bg-gray-700 text-luxe-gray dark:text-gray-400'
                               )}
                             >
                               {fit === 'true' ? 'True to size' : fit === 'small' ? 'Runs small' : 'Runs large'}
@@ -249,7 +249,7 @@ export function ProductReviews(_props: ProductReviewsProps) {
                         'flex items-center gap-2 text-sm transition-colors',
                         helpfulReviews.includes(review.id)
                           ? 'text-accent-gold cursor-default'
-                          : 'text-luxe-gray hover:text-primary'
+                          : 'text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white'
                       )}
                     >
                       <ThumbsUp className="w-4 h-4" />
@@ -266,7 +266,7 @@ export function ProductReviews(_props: ProductReviewsProps) {
             {totalReviews > 3 && (
               <motion.button
                 onClick={() => setShowAllReviews(!showAllReviews)}
-                className="flex items-center gap-2 mx-auto mt-8 text-sm font-medium hover:text-accent-gold transition-colors"
+                className="flex items-center gap-2 mx-auto mt-8 text-sm font-medium hover:text-accent-gold transition-colors dark:text-white"
               >
                 {showAllReviews ? 'Show Less' : `View All ${totalReviews} Reviews`}
                 <ChevronDown className={cn(

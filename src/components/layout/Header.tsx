@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils'
 import { products } from '@/data/products'
 import { formatPrice } from '@/lib/utils'
 import { Search, User, ShoppingBag, Menu, X, Heart, Scale } from 'lucide-react'
-import { ThemeToggle } from './ThemeToggle'
-import { CurrencySwitcher } from './CurrencySwitcher'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { CurrencySwitcher } from '@/components/ui/CurrencySwitcher'
 
 const navLinks = [
   { href: '/category/woman', label: 'Woman' },
@@ -65,8 +65,8 @@ export function Header() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm'
-            : 'bg-white'
+            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm dark:shadow-gray-900/50'
+            : 'bg-white dark:bg-gray-900'
         )}
       >
         <div className="container-luxe">
@@ -74,7 +74,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden p-2 hover:opacity-70 transition-opacity"
+              className="lg:hidden p-2 hover:opacity-70 transition-opacity dark:text-white"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -94,7 +94,7 @@ export function Header() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="relative text-xs font-medium uppercase tracking-widest text-primary/80 hover:text-primary transition-colors group"
+                  className="relative text-xs font-medium uppercase tracking-widest text-primary/80 dark:text-white/80 hover:text-primary dark:hover:text-white transition-colors group"
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full" />
@@ -108,14 +108,14 @@ export function Header() {
               <ThemeToggle />
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:opacity-70 transition-opacity"
+                className="p-2 hover:opacity-70 transition-opacity dark:text-white"
                 aria-label="Search"
               >
                 <Search className="w-5 h-5" />
               </button>
               <Link
                 to="/wishlist"
-                className="relative p-2 hover:opacity-70 transition-opacity"
+                className="relative p-2 hover:opacity-70 transition-opacity dark:text-white"
                 aria-label="Wishlist"
               >
                 <Heart className="w-5 h-5" />
@@ -126,7 +126,7 @@ export function Header() {
                 )}
               </Link>
               {comparisonItems.length > 0 && (
-                <div className="relative p-2 hover:opacity-70 transition-opacity">
+                <div className="relative p-2 hover:opacity-70 transition-opacity dark:text-white">
                   <Scale className="w-5 h-5" />
                   <span className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center text-2xs font-medium bg-accent-gold text-white rounded-full">
                     {comparisonItems.length}
@@ -134,14 +134,14 @@ export function Header() {
                 </div>
               )}
               <button
-                className="hidden sm:block p-2 hover:opacity-70 transition-opacity"
+                className="hidden sm:block p-2 hover:opacity-70 transition-opacity dark:text-white"
                 aria-label="Account"
               >
                 <User className="w-5 h-5" />
               </button>
               <button
                 onClick={toggleCart}
-                className="relative p-2 hover:opacity-70 transition-opacity"
+                className="relative p-2 hover:opacity-70 transition-opacity dark:text-white"
                 aria-label="Shopping Cart"
               >
                 <ShoppingBag className="w-5 h-5" />
@@ -172,7 +172,7 @@ export function Header() {
         />
         <div
           className={cn(
-            'absolute top-0 left-0 right-0 bg-white shadow-lg transition-transform duration-300',
+            'absolute top-0 left-0 right-0 bg-white dark:bg-gray-900 shadow-lg dark:shadow-gray-900/50 transition-transform duration-300',
             isSearchOpen ? 'translate-y-0' : '-translate-y-full'
           )}
         >
@@ -184,7 +184,7 @@ export function Header() {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 py-3 text-lg font-light border-none outline-none placeholder:text-luxe-silver"
+                className="flex-1 py-3 text-lg font-light border-none outline-none placeholder:text-luxe-silver dark:text-white dark:placeholder:text-gray-500 bg-transparent"
                 autoFocus={isSearchOpen}
               />
               <button
@@ -197,7 +197,7 @@ export function Header() {
 
             {/* Search Results */}
             {searchQuery.trim() && (
-              <div className="mt-6 border-t border-gray-100 pt-6">
+              <div className="mt-6 border-t border-gray-100 dark:border-gray-700 pt-6">
                 {searchResults.length > 0 ? (
                   <>
                     <p className="text-sm text-luxe-gray mb-4">
@@ -255,7 +255,7 @@ export function Header() {
         />
         <div
           className={cn(
-            'absolute top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-xl transition-transform duration-300',
+            'absolute top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-xl dark:shadow-gray-900/50 transition-transform duration-300',
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           )}
         >
@@ -277,7 +277,7 @@ export function Header() {
                   key={link.label}
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-3 text-sm font-medium uppercase tracking-widest text-primary/80 hover:text-primary border-b border-gray-100 transition-colors"
+                  className="py-3 text-sm font-medium uppercase tracking-widest text-primary/80 dark:text-white/80 hover:text-primary dark:hover:text-white border-b border-gray-100 dark:border-gray-700 transition-colors"
                 >
                   {link.label}
                 </Link>

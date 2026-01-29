@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { products } from '@/data/products'
 import { useCurrency } from '@/context/CurrencyContext'
 import { ArrowRight, Sparkles } from 'lucide-react'
-import { CountdownTimer } from './CountdownTimer'
+import { CountdownTimer } from '@/components/ui/CountdownTimer'
 
 export function FlashSale() {
   const { formatPrice } = useCurrency()
@@ -39,7 +39,7 @@ export function FlashSale() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-display font-bold mb-6"
+            className="text-3xl md:text-4xl font-display font-bold mb-6 dark:text-white"
           >
             Limited Time Offers
           </motion.h2>
@@ -78,7 +78,7 @@ export function FlashSale() {
                   )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </div>
-                <h3 className="font-medium text-sm mb-2 line-clamp-1 group-hover:text-accent-gold transition-colors">
+                <h3 className="font-medium text-sm mb-2 line-clamp-1 group-hover:text-accent-gold transition-colors dark:text-white">
                   {product.name}
                 </h3>
                 <div className="flex items-center gap-2">

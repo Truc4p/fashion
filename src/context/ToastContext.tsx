@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useCallback } from 'react'
-import { ToastContainer, Toast, ToastType } from '@/components/Toast'
+import { ToastContainer } from '@/components/ui/Toast'
+import type { Toast, ToastType } from '@/components/ui/Toast'
 
 interface ToastContextType {
   showToast: (message: string, type?: ToastType, duration?: number) => void

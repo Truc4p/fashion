@@ -134,31 +134,31 @@ export function CategoryPage() {
       <Cart />
       <main className="pt-20">
         {/* Hero Banner */}
-        <section className="relative bg-gradient-to-br from-luxe-cream via-luxe-ivory to-white py-20 md:py-28 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-luxe-cream via-luxe-ivory to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900 py-20 md:py-28 overflow-hidden">
           <div className="absolute inset-0 opacity-5" style={{
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%232c2c2c" fill-opacity="1" fill-rule="evenodd"/%3E%3C/svg%3E")',
           }} />
           <div className="container-luxe text-center relative">
-            <span className="inline-block px-4 py-2 mb-6 text-xs font-medium uppercase tracking-ultra text-luxe-gray border border-luxe-silver/30">
+            <span className="inline-block px-4 py-2 mb-6 text-xs font-medium uppercase tracking-ultra text-luxe-gray dark:text-gray-400 border border-luxe-silver/30 dark:border-gray-600">
               Premium Selection
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary via-luxe-charcoal to-accent-gold bg-clip-text text-transparent">
               {getCategoryTitle()}
             </h1>
-            <p className="text-luxe-gray max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+            <p className="text-luxe-gray dark:text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
               {getCategoryDescription()}
             </p>
           </div>
         </section>
 
         {/* Toolbar */}
-        <div className="border-b border-gray-200 sticky top-16 md:top-20 bg-white/95 backdrop-blur-md z-30 shadow-sm">
+        <div className="border-b border-gray-200 dark:border-gray-700 sticky top-16 md:top-20 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-30 shadow-sm dark:shadow-gray-900/50">
           <div className="container-luxe py-5">
             <div className="flex items-center justify-between">
               {/* Filter Toggle */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:text-accent-gold transition-colors border border-gray-200 hover:border-accent-gold rounded-sm"
+                className="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:text-accent-gold transition-colors border border-gray-200 dark:border-gray-600 hover:border-accent-gold rounded-sm dark:text-white"
               >
                 <SlidersHorizontal className="w-4 h-4" />
                 Filters
@@ -170,7 +170,7 @@ export function CategoryPage() {
               </button>
 
               {/* Results Count */}
-              <span className="text-sm font-medium text-luxe-gray">
+              <span className="text-sm font-medium text-luxe-gray dark:text-gray-400">
                 {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
               </span>
 
@@ -178,7 +178,7 @@ export function CategoryPage() {
               <div className="relative">
                 <button
                   onClick={() => setShowSortDropdown(!showSortDropdown)}
-                  className="flex items-center gap-2 text-sm font-medium hover:text-accent-gold transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium hover:text-accent-gold transition-colors dark:text-white"
                 >
                   Sort by: {sortOptions.find(o => o.value === sortBy)?.label}
                   <ChevronDown className={cn(
@@ -192,7 +192,7 @@ export function CategoryPage() {
                       className="fixed inset-0 z-10" 
                       onClick={() => setShowSortDropdown(false)} 
                     />
-                    <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 shadow-lg z-20">
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg z-20">
                       {sortOptions.map(option => (
                         <button
                           key={option.value}
@@ -201,7 +201,7 @@ export function CategoryPage() {
                             setShowSortDropdown(false)
                           }}
                           className={cn(
-                            "w-full px-4 py-3 text-left text-sm hover:bg-luxe-cream transition-colors",
+                            "w-full px-4 py-3 text-left text-sm hover:bg-luxe-cream dark:hover:bg-gray-700 transition-colors dark:text-white",
                             sortBy === option.value && "font-medium text-accent-gold"
                           )}
                         >
@@ -218,24 +218,24 @@ export function CategoryPage() {
 
         {/* Filters Panel */}
         <div className={cn(
-          "border-b border-gray-200 overflow-hidden transition-all duration-300",
+          "border-b border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 bg-white dark:bg-gray-900",
           showFilters ? "max-h-96" : "max-h-0"
         )}>
           <div className="container-luxe py-6">
             <div className="flex flex-wrap gap-8">
               {/* Size Filter */}
               <div>
-                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3">Size</h4>
+                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3 dark:text-white">Size</h4>
                 <div className="flex flex-wrap gap-2">
                   {sizeOptions.map(size => (
                     <button
                       key={size}
                       onClick={() => toggleSize(size)}
                       className={cn(
-                        "w-10 h-10 flex items-center justify-center text-sm border transition-all",
+                        "w-10 h-10 flex items-center justify-center text-sm border transition-all dark:text-white",
                         selectedSizes.includes(size)
                           ? "border-primary bg-primary text-white"
-                          : "border-gray-300 hover:border-primary"
+                          : "border-gray-300 dark:border-gray-600 hover:border-primary"
                       )}
                     >
                       {size}
@@ -246,7 +246,7 @@ export function CategoryPage() {
 
               {/* Color Filter */}
               <div>
-                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3">Color</h4>
+                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3 dark:text-white">Color</h4>
                 <div className="flex flex-wrap gap-2">
                   {colorOptions.map(color => (
                     <button
@@ -267,21 +267,21 @@ export function CategoryPage() {
 
               {/* Price Range */}
               <div>
-                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3">Price Range</h4>
+                <h4 className="text-sm font-semibold uppercase tracking-wider mb-3 dark:text-white">Price Range</h4>
                 <div className="flex items-center gap-3">
                   <input
                     type="number"
                     value={priceRange[0]}
                     onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
-                    className="w-24 px-3 py-2 border border-gray-300 text-sm"
+                    className="w-24 px-3 py-2 border border-gray-300 dark:border-gray-600 text-sm dark:bg-gray-800 dark:text-white"
                     placeholder="Min"
                   />
-                  <span className="text-luxe-gray">—</span>
+                  <span className="text-luxe-gray dark:text-gray-400">—</span>
                   <input
                     type="number"
                     value={priceRange[1]}
                     onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
-                    className="w-24 px-3 py-2 border border-gray-300 text-sm"
+                    className="w-24 px-3 py-2 border border-gray-300 dark:border-gray-600 text-sm dark:bg-gray-800 dark:text-white"
                     placeholder="Max"
                   />
                 </div>
@@ -312,8 +312,8 @@ export function CategoryPage() {
               </div>
             ) : (
               <div className="text-center py-16">
-                <p className="text-xl text-luxe-gray mb-4">No products found</p>
-                <p className="text-luxe-silver mb-6">Try adjusting your filters to find what you're looking for.</p>
+                <p className="text-xl text-luxe-gray dark:text-gray-400 mb-4">No products found</p>
+                <p className="text-luxe-silver dark:text-gray-500 mb-6">Try adjusting your filters to find what you're looking for.</p>
                 <button onClick={clearFilters} className="btn-primary">
                   Clear Filters
                 </button>

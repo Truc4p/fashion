@@ -32,7 +32,7 @@ export function RecommendedProducts({ products, title = 'You Might Also Like' }:
     <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
       <div className="container-luxe">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-display font-bold">{title}</h2>
+          <h2 className="text-2xl md:text-3xl font-display font-bold dark:text-white">{title}</h2>
           <div className="flex gap-2">
             <button
               onClick={() => scroll('left')}

@@ -1,25 +1,31 @@
-export { Header } from './Header'
-export { Hero } from './Hero'
-export { ProductCard } from './ProductCard'
-export { ProductGrid } from './ProductGrid'
-export { ProductGallery } from './ProductGallery'
-export { ProductReviews } from './ProductReviews'
-export { SizeGuide } from './SizeGuide'
-export { SEO } from './SEO'
-export * from './Skeleton'
-export { Collections } from './Collections'
-export { Cart } from './Cart'
-export { Newsletter } from './Newsletter'
-export { Footer } from './Footer'
-export * from './animations'
-export { FilterSidebar } from './FilterSidebar'
-export { ScrollToTop } from './ScrollToTop'
-export { ProductComparison } from './ProductComparison'
-export { RecommendedProducts } from './RecommendedProducts'
-export { CurrencySwitcher } from './CurrencySwitcher'
-export { ThemeToggle } from './ThemeToggle'
-export { PromoBar } from './PromoBar'
-export { CountdownTimer } from './CountdownTimer'
-export { LoadingScreen } from './LoadingScreen'
-export { FlashSale } from './FlashSale'
-export { SocialProof } from './SocialProof'
+/**
+ * Components Index
+ * 
+ * This file provides a central export point for all components.
+ * Components are organized into the following categories:
+ * 
+ * - layout/   : Header, Footer
+ * - ui/       : Small reusable UI elements (buttons, toggles, etc.)
+ * - product/  : Product-related components (cards, grids, galleries)
+ * - sections/ : Page sections (Hero, Collections, Newsletter)
+ * - cart/     : Shopping cart components
+ * - common/   : SEO, animations, and shared utilities
+ */
+
+// Layout
+export * from './layout'
+
+// UI Components
+export * from './ui'
+
+// Product Components
+export * from './product'
+
+// Page Sections
+export * from './sections'
+
+// Cart
+export * from './cart'
+
+// Common
+export * from './common'

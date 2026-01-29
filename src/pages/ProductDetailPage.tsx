@@ -104,16 +104,16 @@ export function ProductDetailPage() {
       <Cart />
       <main className="pt-20">
         {/* Breadcrumb */}
-        <div className="bg-gradient-to-r from-luxe-cream to-luxe-ivory border-b border-gray-100">
+        <div className="bg-gradient-to-r from-luxe-cream to-luxe-ivory dark:from-gray-800 dark:to-gray-900 border-b border-gray-100 dark:border-gray-700">
           <div className="container-luxe py-5">
             <nav className="flex items-center gap-3 text-sm">
-              <Link to="/" className="text-luxe-gray hover:text-primary transition-colors font-medium">
+              <Link to="/" className="text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors font-medium">
                 Home
               </Link>
-              <span className="text-luxe-silver">/</span>
-              <span className="text-luxe-gray capitalize font-medium">{product.category}</span>
-              <span className="text-luxe-silver">/</span>
-              <span className="text-primary font-semibold">{product.name}</span>
+              <span className="text-luxe-silver dark:text-gray-600">/</span>
+              <span className="text-luxe-gray dark:text-gray-400 capitalize font-medium">{product.category}</span>
+              <span className="text-luxe-silver dark:text-gray-600">/</span>
+              <span className="text-primary dark:text-white font-semibold">{product.name}</span>
             </nav>
           </div>
         </div>
@@ -145,26 +145,26 @@ export function ProductDetailPage() {
                 {/* Back Link */}
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 text-sm text-luxe-gray hover:text-primary transition-colors mb-6"
+                  className="inline-flex items-center gap-2 text-sm text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors mb-6"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Back to Collection
                 </Link>
 
                 {/* Category */}
-                <p className="text-xs font-bold uppercase tracking-ultra text-luxe-gray mb-3 flex items-center gap-2">
+                <p className="text-xs font-bold uppercase tracking-ultra text-luxe-gray dark:text-gray-400 mb-3 flex items-center gap-2">
                   <span className="w-8 h-0.5 bg-accent-gold"></span>
                   {product.category}
                 </p>
 
                 {/* Title */}
-                <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
+                <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight dark:text-white">
                   {product.name}
                 </h1>
 
                 {/* Price */}
-                <div className="flex items-center gap-4 mb-8 pb-8 border-b-2 border-gray-100">
-                  <span className="text-3xl font-bold">
+                <div className="flex items-center gap-4 mb-8 pb-8 border-b-2 border-gray-100 dark:border-gray-700">
+                  <span className="text-3xl font-bold dark:text-white">
                     {formatPrice(product.price)}
                   </span>
                   {product.originalPrice && (
@@ -180,15 +180,15 @@ export function ProductDetailPage() {
                 </div>
 
                 {/* Description */}
-                <p className="text-luxe-gray text-lg leading-relaxed mb-8">
+                <p className="text-luxe-gray dark:text-gray-400 text-lg leading-relaxed mb-8">
                   {product.description}
                 </p>
 
                 {/* Color Selection */}
                 {product.colors && product.colors.length > 0 && (
-                  <div className="mb-8 p-6 bg-luxe-cream/50 rounded-sm">
-                    <label className="block text-sm font-bold uppercase tracking-wider mb-4">
-                      Color: <span className="font-normal text-luxe-gray">{selectedColor}</span>
+                  <div className="mb-8 p-6 bg-luxe-cream/50 dark:bg-gray-800/50 rounded-sm">
+                    <label className="block text-sm font-bold uppercase tracking-wider mb-4 dark:text-white">
+                      Color: <span className="font-normal text-luxe-gray dark:text-gray-400">{selectedColor}</span>
                     </label>
                     <div className="flex gap-3">
                       {product.colors.map((color) => (
@@ -213,12 +213,12 @@ export function ProductDetailPage() {
                 {product.sizes && product.sizes.length > 0 && (
                   <div className="mb-6">
                     <div className="flex items-center justify-between mb-3">
-                      <label className="text-sm font-medium uppercase tracking-wider">
-                        Size: <span className="font-normal text-luxe-gray">{selectedSize}</span>
+                      <label className="text-sm font-medium uppercase tracking-wider dark:text-white">
+                        Size: <span className="font-normal text-luxe-gray dark:text-gray-400">{selectedSize}</span>
                       </label>
                       <button 
                         onClick={() => setShowSizeGuide(true)}
-                        className="text-xs text-luxe-gray underline hover:text-primary transition-colors"
+                        className="text-xs text-luxe-gray dark:text-gray-400 underline hover:text-primary dark:hover:text-white transition-colors"
                       >
                         Size Guide
                       </button>
@@ -232,7 +232,7 @@ export function ProductDetailPage() {
                             'min-w-[3rem] px-4 py-3 text-sm font-medium border transition-all',
                             selectedSize === size
                               ? 'bg-primary text-white border-primary'
-                              : 'border-gray-200 hover:border-primary'
+                              : 'border-gray-200 dark:border-gray-600 hover:border-primary dark:text-white'
                           )}
                         >
                           {size}
@@ -245,17 +245,17 @@ export function ProductDetailPage() {
                 {/* Quantity & Add to Cart */}
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   {/* Quantity */}
-                  <div className="flex items-center border border-gray-200">
+                  <div className="flex items-center border border-gray-200 dark:border-gray-600">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-4 hover:bg-gray-50 transition-colors"
+                      className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors dark:text-white"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
-                    <span className="w-16 text-center font-medium">{quantity}</span>
+                    <span className="w-16 text-center font-medium dark:text-white">{quantity}</span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="p-4 hover:bg-gray-50 transition-colors"
+                      className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors dark:text-white"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -277,7 +277,7 @@ export function ProductDetailPage() {
                       "p-4 border transition-colors",
                       inWishlist
                         ? "border-accent-rose bg-accent-rose text-white"
-                        : "border-gray-200 hover:border-primary hover:text-accent-rose"
+                        : "border-gray-200 dark:border-gray-600 hover:border-primary hover:text-accent-rose dark:text-white"
                     )}
                     aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
                   >
@@ -292,7 +292,7 @@ export function ProductDetailPage() {
                       "p-4 border transition-colors",
                       inComparison
                         ? "border-accent-gold bg-accent-gold text-white"
-                        : "border-gray-200 hover:border-primary hover:text-accent-gold"
+                        : "border-gray-200 dark:border-gray-600 hover:border-primary hover:text-accent-gold dark:text-white"
                     )}
                     aria-label={inComparison ? "In comparison" : "Add to comparison"}
                     disabled={inComparison}
@@ -303,7 +303,7 @@ export function ProductDetailPage() {
                   {/* Share */}
                   <button
                     onClick={handleShare}
-                    className="p-4 border border-gray-200 hover:border-primary transition-colors"
+                    className="p-4 border border-gray-200 dark:border-gray-600 hover:border-primary transition-colors dark:text-white"
                     aria-label="Share product"
                   >
                     <Share2 className="w-5 h-5" />
@@ -311,18 +311,18 @@ export function ProductDetailPage() {
                 </div>
 
                 {/* Features */}
-                <div className="grid grid-cols-3 gap-4 py-8 border-t border-gray-100">
+                <div className="grid grid-cols-3 gap-4 py-8 border-t border-gray-100 dark:border-gray-700">
                   <div className="text-center">
-                    <Truck className="w-6 h-6 mx-auto mb-2 text-luxe-gray" />
-                    <p className="text-xs text-luxe-gray">Free Shipping</p>
+                    <Truck className="w-6 h-6 mx-auto mb-2 text-luxe-gray dark:text-gray-400" />
+                    <p className="text-xs text-luxe-gray dark:text-gray-400">Free Shipping</p>
                   </div>
                   <div className="text-center">
-                    <RotateCcw className="w-6 h-6 mx-auto mb-2 text-luxe-gray" />
-                    <p className="text-xs text-luxe-gray">Easy Returns</p>
+                    <RotateCcw className="w-6 h-6 mx-auto mb-2 text-luxe-gray dark:text-gray-400" />
+                    <p className="text-xs text-luxe-gray dark:text-gray-400">Easy Returns</p>
                   </div>
                   <div className="text-center">
-                    <Shield className="w-6 h-6 mx-auto mb-2 text-luxe-gray" />
-                    <p className="text-xs text-luxe-gray">Secure Payment</p>
+                    <Shield className="w-6 h-6 mx-auto mb-2 text-luxe-gray dark:text-gray-400" />
+                    <p className="text-xs text-luxe-gray dark:text-gray-400">Secure Payment</p>
                   </div>
                 </div>
               </motion.div>

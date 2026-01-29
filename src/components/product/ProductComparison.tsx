@@ -40,7 +40,7 @@ export function ProductComparison() {
           />
           <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 max-w-6xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-2xl z-50 max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-6 flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">Product Comparison</h2>
+              <h2 className="text-2xl font-semibold dark:text-white">Product Comparison</h2>
               <div className="flex items-center gap-3">
                 <button
                   onClick={clearComparison}
@@ -74,7 +74,7 @@ export function ProductComparison() {
                         alt={product.name}
                         className="w-full aspect-[3/4] object-cover rounded-lg mb-4"
                       />
-                      <h3 className="font-medium text-lg mb-2">{product.name}</h3>
+                      <h3 className="font-medium text-lg mb-2 dark:text-white">{product.name}</h3>
                     </Link>
                   </div>
                 ))}
@@ -92,7 +92,7 @@ export function ProductComparison() {
                         <div key={product.id} className="text-center">
                           {attr.key === 'price' && (
                             <div>
-                              <span className="text-lg font-semibold">{formatPrice(product.price)}</span>
+                              <span className="text-lg font-semibold dark:text-white">{formatPrice(product.price)}</span>
                               {product.originalPrice && (
                                 <span className="ml-2 text-sm text-gray-500 line-through">
                                   {formatPrice(product.originalPrice)}
@@ -101,7 +101,7 @@ export function ProductComparison() {
                             </div>
                           )}
                           {attr.key === 'category' && (
-                            <span className="capitalize">{product.category}</span>
+                            <span className="capitalize dark:text-white">{product.category}</span>
                           )}
                           {attr.key === 'sizes' && (
                             <div className="flex flex-wrap gap-1 justify-center">

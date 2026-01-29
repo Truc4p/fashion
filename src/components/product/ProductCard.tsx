@@ -36,7 +36,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       <Link to={`/product/${product.id}`} className="block">
         {/* Image Container */}
         <motion.div 
-          className="relative aspect-product overflow-hidden bg-luxe-ivory mb-5 rounded-sm shadow-sm group-hover:shadow-luxe-lg transition-all duration-500"
+          className="relative aspect-product overflow-hidden bg-luxe-ivory dark:bg-gray-800 mb-5 rounded-sm shadow-sm group-hover:shadow-luxe-lg transition-all duration-500"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >

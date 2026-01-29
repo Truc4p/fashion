@@ -4,17 +4,17 @@ import { ArrowRight } from 'lucide-react'
 
 export function Collections() {
   return (
-    <section className="section-spacing bg-gradient-to-b from-luxe-cream to-white">
+    <section className="section-spacing bg-gradient-to-b from-luxe-cream to-white dark:from-gray-800 dark:to-gray-900">
       <div className="container-luxe">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <span className="inline-block px-4 py-2 mb-4 text-xs font-medium uppercase tracking-ultra text-luxe-gray border border-luxe-silver/30">
+          <span className="inline-block px-4 py-2 mb-4 text-xs font-medium uppercase tracking-ultra text-luxe-gray dark:text-gray-400 border border-luxe-silver/30 dark:border-gray-600">
             Signature Styles
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold mb-6 dark:text-white">
             Curated Collections
           </h2>
-          <p className="text-lg text-luxe-gray font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-luxe-gray dark:text-gray-400 font-light max-w-2xl mx-auto leading-relaxed">
             Discover our signature pieces, thoughtfully designed for the modern individual
           </p>
         </div>

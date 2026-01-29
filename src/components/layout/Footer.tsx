@@ -34,9 +34,9 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-gradient-to-br from-luxe-cream via-luxe-ivory to-luxe-cream pt-20 pb-8 overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-luxe-cream via-luxe-ivory to-luxe-cream dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20 pb-8 overflow-hidden">
       {/* Decorative Background Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{
+      <div className="absolute inset-0 opacity-5 dark:opacity-10" style={{
         backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%232c2c2c" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
       }} />
       
@@ -44,7 +44,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
           {/* Shop */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2 dark:text-white">
               <span className="w-6 h-0.5 bg-accent-gold"></span>
               Shop
             </h3>
@@ -53,7 +53,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-luxe-gray hover:text-primary hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-sm text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
                   >
                     {link.label}
                   </Link>
@@ -64,7 +64,7 @@ export function Footer() {
 
           {/* Help */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2 dark:text-white">
               <span className="w-6 h-0.5 bg-accent-gold"></span>
               Help
             </h3>
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-luxe-gray hover:text-primary hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-sm text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
                   >
                     {link.label}
                   </Link>
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2 dark:text-white">
               <span className="w-6 h-0.5 bg-accent-gold"></span>
               Company
             </h3>
@@ -93,7 +93,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-sm text-luxe-gray hover:text-primary hover:translate-x-1 inline-block transition-all duration-300"
+                    className="text-sm text-luxe-gray dark:text-gray-400 hover:text-primary dark:hover:text-white hover:translate-x-1 inline-block transition-all duration-300"
                   >
                     {link.label}
                   </Link>
@@ -104,7 +104,7 @@ export function Footer() {
 
           {/* Social & Newsletter */}
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-ultra mb-6 flex items-center gap-2 dark:text-white">
               <span className="w-6 h-0.5 bg-accent-gold"></span>
               Follow Us
             </h3>
@@ -116,21 +116,21 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="p-3 bg-white text-luxe-gray hover:text-white hover:bg-primary transition-all duration-300 rounded-sm shadow-sm hover:shadow-lg hover:-translate-y-1"
+                  className="p-3 bg-white dark:bg-gray-800 text-luxe-gray dark:text-gray-400 hover:text-white hover:bg-primary transition-all duration-300 rounded-sm shadow-sm hover:shadow-lg hover:-translate-y-1"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider mb-4">
+              <h4 className="text-sm font-bold uppercase tracking-wider mb-4 dark:text-white">
                 Download Our App
               </h4>
               <div className="flex flex-col gap-2">
-                <div className="px-4 py-2.5 bg-primary text-white text-xs font-semibold rounded-sm hover:bg-accent-gold transition-colors cursor-pointer text-center">
+                <div className="px-4 py-2.5 bg-primary dark:bg-white text-white dark:text-primary text-xs font-semibold rounded-sm hover:bg-accent-gold dark:hover:bg-accent-gold dark:hover:text-white transition-colors cursor-pointer text-center">
                   App Store
                 </div>
-                <div className="px-4 py-2.5 bg-primary text-white text-xs font-semibold rounded-sm hover:bg-accent-gold transition-colors cursor-pointer text-center">
+                <div className="px-4 py-2.5 bg-primary dark:bg-white text-white dark:text-primary text-xs font-semibold rounded-sm hover:bg-accent-gold dark:hover:bg-accent-gold dark:hover:text-white transition-colors cursor-pointer text-center">
                   Google Play
                 </div>
               </div>
@@ -139,7 +139,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t-2 border-gray-200">
+        <div className="pt-10 border-t-2 border-gray-200 dark:border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-8">
               <Link
@@ -148,22 +148,22 @@ export function Footer() {
               >
                 LUXE
               </Link>
-              <p className="text-xs text-luxe-gray font-medium">
+              <p className="text-xs text-luxe-gray dark:text-gray-400 font-medium">
                 © {new Date().getFullYear()} LUXE. All rights reserved.
               </p>
             </div>
-            <div className="flex items-center gap-6 text-xs text-luxe-gray font-medium">
-              <Link to="/" className="hover:text-primary transition-colors relative group">
+            <div className="flex items-center gap-6 text-xs text-luxe-gray dark:text-gray-400 font-medium">
+              <Link to="/" className="hover:text-primary dark:hover:text-white transition-colors relative group">
                 Privacy Policy
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-white group-hover:w-full transition-all"></span>
               </Link>
-              <Link to="/" className="hover:text-primary transition-colors relative group">
+              <Link to="/" className="hover:text-primary dark:hover:text-white transition-colors relative group">
                 Terms of Service
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-white group-hover:w-full transition-all"></span>
               </Link>
-              <Link to="/" className="hover:text-primary transition-colors relative group">
+              <Link to="/" className="hover:text-primary dark:hover:text-white transition-colors relative group">
                 Cookie Settings
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-white group-hover:w-full transition-all"></span>
               </Link>
             </div>
           </div>
