@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/context/ThemeContext'
 import { ComparisonProvider } from '@/context/ComparisonContext'
 import { RecentlyViewedProvider } from '@/context/RecentlyViewedContext'
 import { CurrencyProvider } from '@/context/CurrencyContext'
+import { ScrollRestoration } from '@/components'
 import { HomePage, ProductDetailPage, CategoryPage, WishlistPage, AboutPage } from '@/pages'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <WishlistProvider>
                 <CartProvider>
                   <BrowserRouter>
+                    <ScrollRestoration />
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/product/:id" element={<ProductDetailPage />} />
