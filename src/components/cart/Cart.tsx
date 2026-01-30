@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom'
 import { useCart } from '@/context/CartContext'
 import { formatPrice, cn } from '@/lib/utils'
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 
 export function Cart() {
   const { state, closeCart, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
+  const navigate = useNavigate()
+
+  const handleCheckout = () => {
+    closeCart()
+    navigate('/checkout')
+  }
 
   return (
     <>
@@ -120,7 +127,10 @@ export function Cart() {
             <p className="text-xs text-luxe-gray dark:text-gray-400">
               Shipping and taxes calculated at checkout.
             </p>
-            <button className="btn-primary w-full">
+            <button 
+              onClick={handleCheckout}
+              className="btn-primary w-full"
+            >
               Proceed to Checkout
             </button>
             <button
