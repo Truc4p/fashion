@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Header, Footer, Cart, ProductCard, ProductGallery, SizeGuide, SEO, ProductReviews, ScrollToTop, ProductComparison, RecommendedProducts } from '@/components'
 import { products } from '@/data/products'
@@ -13,6 +13,7 @@ import { ChevronLeft, Heart, Share2, Truck, RotateCcw, Shield, Minus, Plus, Scal
 
 export function ProductDetailPage() {
   const { id } = useParams<{ id: string }>()
+  const location = useLocation()
   const product = products.find((p) => p.id === Number(id))
   const { addItem } = useCart()
   const { isInWishlist, toggleWishlist } = useWishlist()
@@ -27,12 +28,28 @@ export function ProductDetailPage() {
   const inWishlist = product ? isInWishlist(product.id) : false
   const inComparison = product ? isInComparison(product.id) : false
 
+  useEffect(() => {
+    console.log('ProductDetailPage: component mounted, id =', id)
+    console.log('ProductDetailPage: location =', location.pathname)
+    return () => {
+      console.log('ProductDetailPage: component unmounted')
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('ProductDetailPage: id changed to', id)
+    console.log('ProductDetailPage: current pathname', location.pathname)
+  }, [id, location.pathname])
+
+  console.log('ProductDetailPage: rendering with id =', id)
+
   // Add to recently viewed when product loads
   useEffect(() => {
     if (product) {
       addToRecentlyViewed(product)
     }
-  }, [product, addToRecentlyViewed])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id])
 
   // Reset selections when product changes
   useEffect(() => {

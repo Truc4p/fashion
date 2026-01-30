@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Header, Hero, Collections, ProductGrid, Newsletter, Footer, Cart, SEO, ScrollToTop, ProductComparison, RecommendedProducts, PromoBar, FlashSale, SocialProof } from '@/components'
 import { products } from '@/data/products'
 import { useRecentlyViewed } from '@/context/RecentlyViewedContext'
@@ -6,6 +7,15 @@ import { getTrendingProducts } from '@/lib/recommendations'
 export function HomePage() {
   const { recentlyViewed } = useRecentlyViewed()
   const trendingProducts = getTrendingProducts(products, 6)
+
+  useEffect(() => {
+    console.log('HomePage: component mounted/rendered')
+    return () => {
+      console.log('HomePage: component unmounted')
+    }
+  }, [])
+
+  console.log('HomePage: rendering')
 
   return (
     <>

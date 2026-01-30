@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
 import { Product } from '@/types'
 
 interface RecentlyViewedContextType {
@@ -22,7 +22,7 @@ export function RecentlyViewedProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(recentlyViewed))
   }, [recentlyViewed])
 
-  const addToRecentlyViewed = (product: Product) => {
+  const addToRecentlyViewed = useCallback((product: Product) => {
     setRecentlyViewed((prev) => {
       // Remove if already exists
       const filtered = prev.filter((item) => item.id !== product.id)
@@ -30,7 +30,7 @@ export function RecentlyViewedProvider({ children }: { children: ReactNode }) {
       const updated = [product, ...filtered].slice(0, MAX_RECENT_ITEMS)
       return updated
     })
-  }
+  }, [])
 
   const clearRecentlyViewed = () => {
     setRecentlyViewed([])
