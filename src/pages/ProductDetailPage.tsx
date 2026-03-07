@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Header, Footer, Cart, ProductCard, ProductGallery, SizeGuide, SEO, ProductReviews, ScrollToTop, ProductComparison, RecommendedProducts } from '@/components'
+import { Header, Footer, Cart, ProductGallery, SizeGuide, SEO, ProductReviews, ScrollToTop, ProductComparison, RecommendedProducts } from '@/components'
 import { products } from '@/data/products'
 import { useCart } from '@/context/CartContext'
 import { useWishlist } from '@/context/WishlistContext'
