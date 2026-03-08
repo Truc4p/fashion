@@ -142,7 +142,7 @@ export function CategoryPage() {
             <span className="inline-block px-4 py-2 mb-6 text-xs font-medium uppercase tracking-ultra text-luxe-gray dark:text-gray-400 border border-luxe-silver/30 dark:border-gray-600">
               Premium Selection
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary via-luxe-charcoal to-accent-gold bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary via-luxe-charcoal to-accent-gold dark:from-white dark:via-gray-300 dark:to-accent-gold bg-clip-text text-transparent">
               {getCategoryTitle()}
             </h1>
             <p className="text-luxe-gray dark:text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">

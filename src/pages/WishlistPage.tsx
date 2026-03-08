@@ -20,7 +20,7 @@ export function WishlistPage() {
             <div className="inline-flex items-center justify-center w-20 h-20 mb-8 bg-gradient-to-br from-accent-rose to-accent-rose/70 rounded-full shadow-lg animate-pulse">
               <Heart className="w-10 h-10 text-white fill-current" />
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-accent-rose via-primary to-accent-gold bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-accent-rose via-primary to-accent-gold dark:from-accent-rose dark:via-gray-300 dark:to-accent-gold bg-clip-text text-transparent">
               My Wishlist
             </h1>
             <p className="text-luxe-gray dark:text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">

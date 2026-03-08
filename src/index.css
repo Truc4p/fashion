@@ -91,6 +91,10 @@
     animation: gradient-shift 3s ease infinite;
   }
 
+  .dark .text-gradient {
+    @apply from-white via-gray-300 to-accent-gold;
+  }
+
   .section-spacing {
     @apply py-20 md:py-28 lg:py-36;
   }
