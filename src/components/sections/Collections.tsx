@@ -21,19 +21,13 @@ export function Collections() {
 
         {/* Collections Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {collections.map((collection, index) => (
+          {collections.map((collection) => (
             <Link
               key={collection.id}
               to={collection.link}
-              className={`group relative overflow-hidden rounded-sm hover:shadow-2xl transition-all duration-500 ${
-                index === 0 ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
-              }`}
+              className="group relative overflow-hidden rounded-sm hover:shadow-2xl transition-all duration-500"
             >
-              <div
-                className={`relative overflow-hidden ${
-                  index === 0 ? 'aspect-[3/4] lg:aspect-auto lg:h-full' : 'aspect-[4/3]'
-                }`}
-              >
+              <div className="relative overflow-hidden aspect-[3/4]">
                 <img
                   src={collection.image}
                   alt={collection.title}
